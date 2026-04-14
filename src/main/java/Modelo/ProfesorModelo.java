@@ -56,5 +56,28 @@ public void setHorasDictadas(){
     this.horasDictadas = horasDictadas;
 }
 
+//metodo para calcular salario
+public double calcularSalario(){
+    return salarioHoras * horasDictadas;
+}
+public double calcularPrepClase(){
+    return calcularSalario() * 0.3;//se calcula el 30% del salario base, que se le suma al final del mes por preparar las clases
+}
+public double salarioTotal(){
+    return calcularSalario() + calcularPrepClase(); 
+}
+public double calcularPrestaciones(){
+    return salarioTotal() * 0.19;
+}
 
+@Override 
+public String toString(){
+    return super.toString() +
+            "\nCedula: " + cedula +
+            "\nArea: " + area +
+            "\nSalario base: " + calcularSalario() +
+            "\nPreparacion Clase: " + calcularPrepClase() +
+            "\nSalario Total: " + salarioTotal() +
+            "\nPrestaciones: " + calcularPrestaciones();
+}
 }
