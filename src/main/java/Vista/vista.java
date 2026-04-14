@@ -239,31 +239,40 @@ public class vista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        // TODO add your handling code here:
+        // aqui va el codigo del telefono
+        String telefono = txtTelefono.getText();
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
-        // TODO add your handling code here:
+        // aqui va el codigo de la direccion
+        String direccion = txtDireccion.getText();
     }//GEN-LAST:event_txtDireccionActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
+        // aqui va el codigo del cuadro de texto para el nombre
+        String nombre = txtNombre.getText();
+ 
+        
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
-        // TODO add your handling code here:
+        // aqui va el codigo del boton que escoge entre profesor o estudiante
+        String tipo = cmbTipo.getSelectedItem().toString();
     }//GEN-LAST:event_cmbTipoActionPerformed
 
     private void txtFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacimientoActionPerformed
-        // TODO add your handling code here:
+        // aqui va el codigo que corresponde a la fecha de nacimiento
+        String fechaNacimiento = txtFechaNacimiento.getText();
     }//GEN-LAST:event_txtFechaNacimientoActionPerformed
 
     private void txtSalarioHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalarioHoraActionPerformed
-        // TODO add your handling code here:
+        // aqui va el codigo del salario por hora
+        double salarioHoras = Double.parseDouble(txtSalarioHora.getText());
     }//GEN-LAST:event_txtSalarioHoraActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // aqui va el codigo correspondiente al boton para registrar la informacion que se llene en la interfaz 
+        try {
         String nombre = txtNombre.getText();
         String direccion = txtDireccion.getText();
         String telefono = txtTelefono.getText();
@@ -286,9 +295,11 @@ public class vista extends javax.swing.JFrame {
             EstudianteModelo estudiante = new EstudianteModelo(nombre, direccion, telefono, fechaNacimiento, grado );
             
             txtResultado.setText(estudiante.toString());
+        } }catch (Exception e) {
+            txtResultado.setText("Error: " + e.getMessage());
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
-
+//el try catch me ayuda a evitar que el programa se caiga
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         txtNombre.setText("");
     txtDireccion.setText("");
