@@ -20,7 +20,7 @@ public class ProfesorModelo extends PersonaModelo {//profesor modelo, hereda de 
 //constructor
 public ProfesorModelo(String nombre, String telefono, String direccion, String fechaNacimiento, String cedula, String area, double salarioHoras, int horasDictadas){
 
-    super(nombre, direccion, telefono, fechaNacimiento);
+    super(nombre, direccion, telefono, fechaNacimiento);//el super hace que se envien los datos al constrcutor de persona
     this.cedula = cedula;
     this.area = area;
     this.horasDictadas = horasDictadas;

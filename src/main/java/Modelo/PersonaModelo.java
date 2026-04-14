@@ -9,6 +9,7 @@ package Modelo;
  * @author samue
  */
 public class PersonaModelo {
+    //atributos
     private String nombre;
     private String direccion;
     private String telefono;
@@ -24,6 +25,7 @@ public class PersonaModelo {
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
     }
+    //getters
     public String getNombre(){
         return nombre;
     }
@@ -36,7 +38,7 @@ public class PersonaModelo {
     public String getFechaNacimiento(){
         return fechaNacimiento;
     }
-    
+    //setters
     public void setNombre(String nombre){
         this.nombre = nombre;
     }
@@ -50,5 +52,12 @@ public class PersonaModelo {
         this.fechaNacimiento = fechaNacimiento;
     }
     
+    @Override 
+    public String toString(){
+        return "Nombre: " + nombre +
+                "\nDireccion: " + direccion + 
+                "\nTelefono " + telefono +
+                "\nFecha Nacimiento" + fechaNacimiento;
+    }
     
 }
