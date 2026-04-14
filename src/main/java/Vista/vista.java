@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
-
+import Modelo.EstudianteModelo;
+import Modelo.ProfesorModelo;
 /**
  *
  * @author samue
@@ -37,7 +38,7 @@ public class vista extends javax.swing.JFrame {
         txtTelefono = new javax.swing.JTextField();
         lblFechaNacimiento = new javax.swing.JLabel();
         txtFechaNacimiento = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbTipo = new javax.swing.JComboBox<>();
         lblCedula = new javax.swing.JLabel();
         lblArea = new javax.swing.JLabel();
         lblSalarioHora = new javax.swing.JLabel();
@@ -87,10 +88,10 @@ public class vista extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Profesor", "Estudiante" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Profesor", "Estudiante" }));
+        cmbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmbTipoActionPerformed(evt);
             }
         });
 
@@ -108,7 +109,7 @@ public class vista extends javax.swing.JFrame {
             }
         });
 
-        lblGrado.setText("jLabel1");
+        lblGrado.setText("Grado");
 
         btnRegistrar.setText("REGISTRAR");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +119,11 @@ public class vista extends javax.swing.JFrame {
         });
 
         btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         txtResultado.setColumns(20);
         txtResultado.setRows(5);
@@ -130,7 +136,7 @@ public class vista extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -167,7 +173,7 @@ public class vista extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,9 +250,9 @@ public class vista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cmbTipoActionPerformed
 
     private void txtFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacimientoActionPerformed
         // TODO add your handling code here:
@@ -257,8 +263,45 @@ public class vista extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSalarioHoraActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        // aqui va el codigo correspondiente al boton para registrar la informacion que se llene en la interfaz 
+        String nombre = txtNombre.getText();
+        String direccion = txtDireccion.getText();
+        String telefono = txtTelefono.getText();
+        String fechaNacimiento = txtFechaNacimiento.getText();
+        String tipo = cmbTipo.getSelectedItem().toString();
+        
+        if (tipo.equals("Profesor")){
+            String cedula = txtCedula.getText();
+            String area = txtArea.getText();
+            double SalarioHoras = Double.parseDouble(txtSalarioHora.getText());
+            int horasDictadas = Integer.parseInt(txtHorasDictadas.getText());
+       
+            ProfesorModelo profesor = new ProfesorModelo(nombre, direccion, telefono, fechaNacimiento, cedula, area, SalarioHoras, horasDictadas);
+            
+            txtResultado.setText(profesor.toString());
+            
+        } else if (tipo.equals("Estudiante")){
+            String grado = txtGrado.getText();
+            
+            EstudianteModelo estudiante = new EstudianteModelo(nombre, direccion, telefono, fechaNacimiento, grado );
+            
+            txtResultado.setText(estudiante.toString());
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtNombre.setText("");
+    txtDireccion.setText("");
+    txtTelefono.setText("");
+    txtFechaNacimiento.setText("");
+    txtCedula.setText("");
+    txtArea.setText("");
+    txtSalarioHora.setText("");
+    txtHorasDictadas.setText("");
+    txtGrado.setText("");
+    txtResultado.setText("");
+    cmbTipo.setSelectedIndex(0);// aqui va todo el codigo respecto al boton de limpiar la informacion
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,7 +331,7 @@ public class vista extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblArea;
